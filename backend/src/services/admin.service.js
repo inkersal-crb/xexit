@@ -30,4 +30,14 @@ const concludeResignation =  async (req) => {
     }
 };
 
-module.exports = { getResignations, concludeResignation };
+const getExitresponses = async () => {
+    try {
+        const exitEesponses = await Resignation.find({}, "employeeId responses");
+        if(!exitEesponses)
+            throw new Error(`No Exit Responses found`);
+        return {data: exitEesponses};
+    } catch (error) {
+        throw new Error(`Error getting Exit Responses: ${error.message}`);
+    }
+};
+module.exports = { getResignations, concludeResignation, getExitresponses };

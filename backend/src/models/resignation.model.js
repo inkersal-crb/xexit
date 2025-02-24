@@ -18,6 +18,12 @@ const resignationSchema = new mongoose.Schema(
       required: true,
     },
     exitDate: { type: Date },
+    responses: [
+      {
+        questionText: { type: String},
+        response: { type: String }
+      }
+    ]
   },
   { timestamps: true }
 );

@@ -36,4 +36,16 @@ const resign = async (req) => {
       throw new Error(`Resignation Submission Failed: ${error.message}`);
   }  
 };
-module.exports = {register, resign};
+
+const responses = async (req) => {
+  const resignation = await User.findOne({employeeId: req.user._id});
+  if(!resignation)
+    throw new Error('Resignation not found');
+  
+  const {responses} = req.body;
+  resignation.responses = responses;
+  await resignation.save();
+  return true;
+};
+
+module.exports = {register, resign, responses};
