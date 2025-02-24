@@ -15,7 +15,7 @@ mongoose
   .then(() => console.log("DB Connected"))
   .catch((error) => console.log("Error connecting to DB:", error));
 
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.options("*", cors());
 app.use(passport.initialize());
 passport.use("jwt", jwtStrategy);
