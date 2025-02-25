@@ -11,15 +11,16 @@ const register = async (req) => {
 }
 
 const resign = async (req) => {
+  console.log(req.user);
   const user = await User.findById(req.user._id);
   const {lwd, reason} = req.body; 
-
+ 
   const lastWorkingDay = moment(lwd, "YYYY-MM-DD");
   const dayOfWeek = lastWorkingDay.isoWeekday();
   if (dayOfWeek === 6 || dayOfWeek === 7) 
     throw new Error(`Last working day cannot be on a weekend`);
   
-  const isHoliday = await checkIfHoliday(lastWorkingDay);
+  const isHoliday = await checkIfHoliday(lastWorkingDay); 
   if (isHoliday) 
     throw new Error(`Last working day cannot be a holiday in India`);
   
@@ -38,7 +39,7 @@ const resign = async (req) => {
 };
 
 const responses = async (req) => {
-  const resignation = await User.findOne({employeeId: req.user._id});
+  const resignation = await Resignation.findOne({employeeId: req.user._id});
   if(!resignation)
     throw new Error('Resignation not found');
   

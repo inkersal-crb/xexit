@@ -11,4 +11,4 @@ const login = async (username, password)=>{
     return user;
 };
 
-module.exports = {login};
+module.exports = { login };

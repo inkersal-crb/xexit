@@ -26,5 +26,4 @@ const getExitresponses = async (req, res) => {
     } 
 };
 
-
 module.exports = { getResignations, concludeResignation, getExitresponses };

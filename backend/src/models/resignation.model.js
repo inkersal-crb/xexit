@@ -14,8 +14,7 @@ const resignationSchema = new mongoose.Schema(
       default: "Pending",
     },
     reason: {
-      type: String,
-      required: true,
+      type: String
     },
     exitDate: { type: Date },
     responses: [
